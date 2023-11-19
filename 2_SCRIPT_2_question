@@ -1,0 +1,15 @@
+SELECT
+     food_code,
+     food_category, 
+     current_avg_food_price_czk, 
+     current_sales_year,
+     round (sum (current_avg_wages_czk) / count (current_avg_wages_czk), 0) AS sum_avg_wages
+FROM t_michaela_bartu_project_sql_primary_final tmbpspf 
+WHERE 
+	current_payroll_year IN ('2006', '2018') AND
+	food_code IN  ('114201', '111301') AND 
+	current_avg_wages_czk IS NOT NULL 
+GROUP BY 
+	current_payroll_year, 
+	food_category 
+; 
