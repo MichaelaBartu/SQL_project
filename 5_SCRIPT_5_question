@@ -1,0 +1,20 @@
+SELECT 
+ 	  country,
+    GDP,
+ 	  YEAR,
+ 	  round(lag(GDP, 1) OVER (ORDER BY year),0) AS GDP_previous_year,
+ 	  round((round(GDP, 1) - lag (GDP, 1) OVER (ORDER BY year)) / lag(GDP, 1) OVER (ORDER BY year) *100, 2) AS Perc_difference_GDP,
+ CASE 
+  	  WHEN GDP > lag(GDP, 1) OVER (PARTITION BY country ORDER BY year, 1) THEN 'increasing'
+ 	    WHEN GDP < lag(GDP, 1) OVER (PARTITION BY country ORDER BY year, 1) THEN 'decreasing'
+      ELSE 'no change'
+      END AS GDP_Trend,
+      tmbpsshq.food_perc_changes_by_Year,
+      tmbpsshq.wages_perc_changes_by_Year
+FROM t_michaela_bartu_project_SQL_secondary_final AS tmbpssf 
+    LEFT JOIN t_michaela_bartu_project_sql_secondary_help_5_question AS tmbpsshq 
+    ON tmbpssf.YEAR = tmbpsshq.current_sales_year
+WHERE country = 'Czech Republic'
+ORDER BY 
+    tmbpssf.YEAR
+;
