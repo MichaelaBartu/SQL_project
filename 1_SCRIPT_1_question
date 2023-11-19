@@ -1,0 +1,13 @@
+SELECT 
+ 	  branch_code,
+	  branch,
+	  current_payroll_year,
+	  current_avg_wages_czk,
+	  payroll_trend,
+	  percent_change
+FROM t_michaela_bartu_project_sql_primary_final tmbpspf 
+WHERE payroll_trend = 'decreasing' 
+GROUP BY
+   	branch_code,
+   	current_payroll_year
+   	;
