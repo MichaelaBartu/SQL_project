@@ -1,0 +1,15 @@
+SELECT 
+ 	  food_code,
+	  food_category,
+	  current_sales_year,
+	  food_percent_change,
+CASE 
+  	  WHEN food_percent_change > lag(food_percent_change, 1) OVER (PARTITION BY food_code ORDER BY current_sales_year, 1) THEN 'increasing'
+ 	    WHEN food_percent_change < lag(food_percent_change, 1) OVER (PARTITION BY food_code ORDER BY current_sales_year, 1) THEN 'decreasing'
+      ELSE 'no change'
+          END AS 'sales_trend'
+FROM t_michaela_bartu_project_sql_primary_final tmbpspf 
+GROUP BY 
+    food_code,
+    current_sales_year 
+;
