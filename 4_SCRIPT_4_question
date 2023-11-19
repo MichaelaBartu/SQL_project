@@ -1,0 +1,9 @@
+SELECT 
+    current_sales_year,
+    ROUND(SUM(food_percent_change) / COUNT (food_percent_change), 0) AS  food_perc_changes_by_Year,
+    ROUND(SUM(percent_change) / COUNT (percent_change), 0) AS wages_perc_changes_by_Year
+FROM  t_michaela_bartu_project_sql_primary_final tmbpspf 
+WHERE food_percent_change IS NOT NULL
+GROUP BY 
+    current_sales_year 
+;
