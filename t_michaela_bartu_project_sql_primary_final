@@ -1,0 +1,6 @@
+CREATE TABLE t_michaela_bartu_project_sql_primary_final 
+SELECT *
+FROM t_michaela_bartu_avg_wages_percentage_change AS tmbawpc 
+LEFT JOIN t_michaela_bartu_avg_prices_percentage_change AS tmbappc 
+	ON tmbawpc.current_payroll_year = tmbappc.current_sales_year
+	;
