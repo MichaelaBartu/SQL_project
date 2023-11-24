@@ -8,10 +8,10 @@ e.GDP,
 e.gini
 FROM countries c 
 LEFT JOIN economies AS e 
- ON c.country = e.country
+ 	ON c.country = e.country
 WHERE 
 	c.continent = 'Europe' AND 
-     gini IS NOT NULL AND 
+     	gini IS NOT NULL AND 
 	YEAR >= '2006' AND YEAR  <= '2018'
 ;
 
