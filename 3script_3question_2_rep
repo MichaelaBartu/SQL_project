@@ -1,0 +1,11 @@
+ SELECT 
+ current_sales_year,
+ food_category,
+ food_code,
+ current_avg_food_price_czk,
+ prev_avg_food_price_czk,
+ food_differ_in_czk,
+ food_percent_change
+ FROM t_michaela_bartu_project_sql_primary_final tmbpspf 
+ GROUP BY food_category, current_sales_year ASC
+ ;
